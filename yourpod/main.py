@@ -107,6 +107,9 @@ with st.form("pdf"):
             pdf_podcast = generate_from_pdf.PdfTopic(pdf_file, st.session_state.openai_api_key)
             new_podcast = pdf_podcast.generate_podcast()
 
+            for sec in new_podcast.sections:
+                print("\n SECTION: " + sec.transcript)
+
             st.success("Transcript Done! -- Title: {podcast.title}" , icon="✅")
             st.info(new_podcast.transcript)
 

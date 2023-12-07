@@ -94,20 +94,14 @@ class PdfTopic():
         full_podcast.length_in_minutes = intro_n_outro.length_in_minutes
 
         all_sections = []
-        intro = PodcastSection
-        intro.transcript = intro_n_outro.intro_transcript
-        all_sections.append(intro)
+        all_sections.append(PodcastSection(length_in_seconds=1, transcript=intro_n_outro.intro_transcript))
         full_podcast.transcript = intro_n_outro.intro_transcript
 
         for sec in sections:
-            section = PodcastSection
-            section.transcript = sec.transcript
-            all_sections.append(section)
+            all_sections.append(PodcastSection(length_in_seconds=1, transcript=sec.transcript))
             full_podcast.transcript += "\n\n" + sec.transcript
 
-        outro = PodcastSection
-        outro.transcript = intro_n_outro.outro_transcript
-        all_sections.append(outro)
+        all_sections.append(PodcastSection(length_in_seconds=1, transcript=intro_n_outro.outro_transcript))
         full_podcast.transcript += "\n\n" + intro_n_outro.outro_transcript
 
         full_podcast.sections = all_sections
